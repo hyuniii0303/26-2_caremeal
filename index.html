@@ -344,155 +344,529 @@ setInterval(updateMealRecommendation, 60000);
                 </div>
             </section>
 
-            <!-- 2. DIET RECOMMENDATION TAB PAGE -->
-            <section id="tab-recommend" class="tab-content hidden space-y-4">
-                <!-- Section Title -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
-                        <h2 class="font-bold text-gray-800 text-base">김가천 님을 위한 오늘의 메뉴</h2>
+
+<!-- 2. DIET RECOMMENDATION TAB PAGE -->
+<section id="tab-recommend" class="tab-content hidden space-y-4">
+
+    <!-- Section Title -->
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+        <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+            <h2 id="recommend-title" class="font-bold text-gray-800 text-base">
+                김가천 님을 위한 오늘의 메뉴
+            </h2>
+        </div>
+        <p id="recommend-description" class="text-xs text-gray-500 mt-1">
+            당뇨병 및 고혈압 관리를 위한 맞춤형 식단입니다.
+        </p>
+    </div>
+
+    <!-- Meal Context Cards -->
+    <div id="meal-context-cards" class="space-y-3">
+
+        <!-- JavaScript에서 시간대별 메뉴 자동 표시 -->
+
+    </div>
+
+</section>
+
+
+<script>
+
+// ==========================================
+// 1. 시간대별 맞춤 식단 데이터
+// ==========================================
+
+const mealRecommendations = {
+
+    // --------------------------------------
+    // BREAKFAST : 06:00 ~ 10:59
+    // --------------------------------------
+
+    breakfast: {
+        title: "당뇨병 및 고혈압 관리를 위한 맞춤형 아침 추천 식단입니다.",
+        meals: [
+
+            {
+                type: "외식",
+                icon: "fa-store",
+                color: "bg-amber-500",
+                name: "통밀 토스트와 아보카도 달걀",
+                subtitle: "브런치 카페 및 샐러드 전문점",
+                calories: "350 kcal",
+                carbs: "35g",
+                sugar: "5g",
+                protein: "20g",
+                image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=500&q=80",
+                tag: "균형 잡힌 아침",
+                info: "통밀빵과 달걀로 탄수화물과 단백질을 균형 있게 섭취하고 소스는 적게 사용하세요."
+            },
+
+            {
+                type: "배달",
+                icon: "fa-motorcycle",
+                color: "bg-blue-500",
+                name: "닭가슴살 아보카도 샐러드",
+                subtitle: "샐러드 전문 배달점",
+                calories: "320 kcal",
+                carbs: "25g",
+                sugar: "6g",
+                protein: "28g",
+                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80",
+                tag: "고단백 · 저염",
+                info: "신선한 채소와 닭가슴살로 단백질을 보충하고 드레싱은 별도로 요청하세요."
+            },
+
+            {
+                type: "편의점",
+                icon: "fa-store",
+                color: "bg-purple-500",
+                name: "훈제란 2개 + 무가당 두유 + 통밀빵",
+                subtitle: "GS25 / CU / 세븐일레븐",
+                calories: "360 kcal",
+                carbs: "32g",
+                sugar: "4g",
+                protein: "23g",
+                image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80",
+                tag: "간편한 아침",
+                info: "무가당 두유를 선택하고 통밀빵의 영양성분표에서 당류와 나트륨을 확인하세요."
+            },
+
+            {
+                type: "집밥",
+                icon: "fa-house-chimney",
+                color: "bg-emerald-600",
+                name: "귀리밥 + 두부구이 + 나물",
+                subtitle: "간단한 아침 집밥",
+                calories: "380 kcal",
+                carbs: "42g",
+                sugar: "5g",
+                protein: "21g",
+                image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=500&q=80",
+                tag: "식이섬유 · 식물성 단백질",
+                info: "귀리와 채소로 식이섬유를 보충하고 두부는 소금 없이 구워 드세요."
+            }
+
+        ]
+    },
+
+
+    // --------------------------------------
+    // LUNCH : 11:00 ~ 15:59
+    // --------------------------------------
+
+    lunch: {
+        title: "당뇨병 및 고혈압 관리를 위한 맞춤형 점심 추천 식단입니다.",
+        meals: [
+
+            {
+                type: "외식",
+                icon: "fa-store",
+                color: "bg-amber-500",
+                name: "현미 생연어 포케 보울",
+                subtitle: "추천 브랜드: 슬로우캘리, 포케올데이 등",
+                calories: "480 kcal",
+                carbs: "52g",
+                sugar: "5g",
+                protein: "28g",
+                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80",
+                tag: "균형 잡힌 한 끼",
+                info: "현미밥과 연어, 채소를 함께 섭취하세요. 소스는 별도로 요청하고 적게 사용하세요."
+            },
+
+            {
+                type: "배달",
+                icon: "fa-motorcycle",
+                color: "bg-blue-500",
+                name: "수비드 닭가슴살 렌틸콩 샐러드",
+                subtitle: "샐러드 전문 배달점",
+                calories: "390 kcal",
+                carbs: "34g",
+                sugar: "4g",
+                protein: "35g",
+                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80",
+                tag: "고단백 · 식이섬유",
+                info: "렌틸콩과 다양한 채소로 식이섬유를 보충하고 드레싱은 적게 사용하세요."
+            },
+
+            {
+                type: "편의점",
+                icon: "fa-store",
+                color: "bg-purple-500",
+                name: "닭가슴살 도시락 + 무가당 두유",
+                subtitle: "GS25 / CU / 세븐일레븐",
+                calories: "430 kcal",
+                carbs: "48g",
+                sugar: "5g",
+                protein: "27g",
+                image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=500&q=80",
+                tag: "간편한 균형 식사",
+                info: "밥과 단백질, 채소가 골고루 포함된 제품을 고르고 나트륨 함량을 확인하세요."
+            },
+
+            {
+                type: "집밥",
+                icon: "fa-house-chimney",
+                color: "bg-emerald-600",
+                name: "현미밥 + 고등어구이 + 브로콜리",
+                subtitle: "건강한 한식 집밥",
+                calories: "460 kcal",
+                carbs: "48g",
+                sugar: "4g",
+                protein: "30g",
+                image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80",
+                tag: "오메가3 · 균형 식단",
+                info: "생선은 소금 간을 최소화해 굽고 브로콜리와 채소 반찬을 함께 드세요."
+            }
+
+        ]
+    },
+
+
+    // --------------------------------------
+    // DINNER : 16:00 ~ 22:00
+    // --------------------------------------
+
+    dinner: {
+        title: "당뇨병 및 고혈압 관리를 위한 맞춤형 저녁 추천 식단입니다.",
+        meals: [
+
+            {
+                type: "외식",
+                icon: "fa-store",
+                color: "bg-amber-500",
+                name: "소고기 샤브샤브",
+                subtitle: "샤브샤브 전문점",
+                calories: "420 kcal",
+                carbs: "38g",
+                sugar: "6g",
+                protein: "30g",
+                image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=500&q=80",
+                tag: "채소 · 단백질",
+                info: "채소와 살코기를 충분히 섭취하고 칼국수와 죽은 양을 조절하세요. 국물과 소스는 적게 드세요."
+            },
+
+            {
+                type: "배달",
+                icon: "fa-motorcycle",
+                color: "bg-blue-500",
+                name: "연어구이와 구운 채소 샐러드",
+                subtitle: "건강식 및 샐러드 배달점",
+                calories: "400 kcal",
+                carbs: "30g",
+                sugar: "5g",
+                protein: "32g",
+                image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&q=80",
+                tag: "고단백 · 저염",
+                info: "연어의 단백질과 불포화지방을 섭취하고 소스와 가공식품은 최소화하세요."
+            },
+
+            {
+                type: "편의점",
+                icon: "fa-store",
+                color: "bg-purple-500",
+                name: "구운 달걀 + 닭가슴살 + 샐러드",
+                subtitle: "GS25 / CU / 세븐일레븐",
+                calories: "370 kcal",
+                carbs: "22g",
+                sugar: "4g",
+                protein: "32g",
+                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80",
+                tag: "간편한 저녁",
+                info: "닭가슴살의 나트륨 함량을 확인하고 무가당 제품과 신선한 샐러드를 선택하세요."
+            },
+
+            {
+                type: "집밥",
+                icon: "fa-house-chimney",
+                color: "bg-emerald-600",
+                name: "보리밥 + 두부조림 + 버섯볶음",
+                subtitle: "저염 건강 집밥",
+                calories: "410 kcal",
+                carbs: "45g",
+                sugar: "5g",
+                protein: "23g",
+                image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=500&q=80",
+                tag: "식이섬유 · 식물성 단백질",
+                info: "보리밥과 두부, 버섯을 활용하고 간장과 소금은 적게 사용해 조리하세요."
+            }
+
+        ]
+    }
+
+};
+
+
+// ==========================================
+// 2. 한국 시간 기준 식사 시간 구분
+// ==========================================
+
+function getCurrentMealType() {
+
+    const koreaTime = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Seoul",
+        hour: "2-digit",
+        hourCycle: "h23"
+    });
+
+    const hour = Number(koreaTime.format(new Date()));
+
+    if (hour >= 6 && hour <= 10) {
+        return "breakfast";
+    }
+
+    if (hour >= 11 && hour <= 15) {
+        return "lunch";
+    }
+
+    if (hour >= 16 && hour <= 22) {
+        return "dinner";
+    }
+
+    return null;
+}
+
+
+// ==========================================
+// 3. 시간대별 식단 카드 생성
+// ==========================================
+
+function renderMealRecommendations() {
+
+    const mealType = getCurrentMealType();
+
+    const title = document.getElementById("recommend-title");
+    const description = document.getElementById("recommend-description");
+    const container = document.getElementById("meal-context-cards");
+
+    if (!title || !description || !container) return;
+
+
+    // 운영시간 외 안내
+
+    if (!mealType) {
+
+        title.innerText = "김가천 님을 위한 건강 식단";
+
+        description.innerText =
+            "오전 6시부터 오후 10시까지 시간대별 맞춤 식단을 제공합니다.";
+
+        container.innerHTML = `
+            <div class="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm">
+
+                <i class="fa-solid fa-moon text-3xl text-gray-300 mb-3"></i>
+
+                <p class="font-bold text-gray-700 text-sm">
+                    현재는 식단 추천 운영시간이 아닙니다.
+                </p>
+
+                <p class="text-xs text-gray-500 mt-2">
+                    오전 6시 이후 새로운 식단을 확인해 보세요.
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const data = mealRecommendations[mealType];
+
+    const mealNames = {
+        breakfast: "아침",
+        lunch: "점심",
+        dinner: "저녁"
+    };
+
+
+    // 상단 제목 변경
+
+    title.innerText =
+        `김가천 님을 위한 오늘의 ${mealNames[mealType]} 메뉴`;
+
+    description.innerText = data.title;
+
+
+    // 메뉴 카드 생성
+
+    container.innerHTML = data.meals.map((meal) => `
+
+        <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
+
+            <!-- Food Image -->
+
+            <div class="relative h-32 bg-gray-200">
+
+                <img src="${meal.image}"
+                     class="w-full h-full object-cover"
+                     alt="${meal.name}"
+                     loading="lazy"
+                     onerror="this.src='https://placehold.co/500x300/31d000/FFFFFF?text=Healthy+Meal'">
+
+                <span class="absolute top-3 left-3 ${meal.color} text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
+
+                    <i class="fa-solid ${meal.icon} mr-1"></i>
+
+                    ${meal.type}
+
+                </span>
+
+                <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
+
+                    ${meal.tag}
+
+                </span>
+
+            </div>
+
+
+            <!-- Meal Information -->
+
+            <div class="p-4 space-y-2">
+
+                <div class="flex justify-between items-start gap-2">
+
+                    <div>
+
+                        <h3 class="font-bold text-gray-800 text-base">
+                            ${meal.name}
+                        </h3>
+
+                        <p class="text-xs text-gray-500 mt-0.5">
+                            ${meal.subtitle}
+                        </p>
+
                     </div>
-                    <p class="text-xs text-gray-500 mt-1">당뇨병 및 고혈압 관리를 위한 맞춤형 점심 추천 식단입니다.</p>
+
+                    <span class="shrink-0 text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">
+
+                        ${meal.calories}
+
+                    </span>
+
                 </div>
 
-                <!-- Meal Context Filter Cards (외식, 배달, 편의점, 집밥) -->
-                <div class="space-y-3">
-                    
-                    <!-- 1. 외식 (Dining Out) -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
-                        <div class="relative h-32 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="외식 추천" onerror="this.src='https://placehold.co/400x150/31d000/FFFFFF?text=외식+포케'">
-                            <span class="absolute top-3 left-3 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
-                                <i class="fa-solid fa-store mr-1"></i> 외식
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
-                                혈당 지수(GI) Low
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-base">현미 생연어 포케 보울</h3>
-                                    <p class="text-xs text-gray-500 mt-0.5">추천 브랜드: 슬로우캘리, 포케올데이 등</p>
-                                </div>
-                                <span class="text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">480 kcal</span>
-                            </div>
-                            <!-- Nutrients -->
-                            <div class="flex space-x-3 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
-                                <span>탄수화물 <strong>52g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>당류 <strong>2.8g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>단백질 <strong>26g</strong></span>
-                            </div>
-                            <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
-                                <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
-                                <span>소스는 '스리라차 마요' 또는 '오리엔탈'을 절반만 찍어서 드시는 것을 권장합니다.</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- 2. 배달 (Delivery) -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
-                        <div class="relative h-32 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="배달 추천" onerror="this.src='https://placehold.co/400x150/31d000/FFFFFF?text=배달+샐러드'">
-                            <span class="absolute top-3 left-3 bg-blue-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
-                                <i class="fa-solid fa-motorcycle mr-1"></i> 배달
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
-                                고단백 · 저염
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-base">수비드 닭가슴살 & 렌틸콩 샐러드</h3>
-                                    <p class="text-xs text-gray-500 mt-0.5">배달의민족 / 쿠팡이츠 샐러드 전문점</p>
-                                </div>
-                                <span class="text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">390 kcal</span>
-                            </div>
-                            <div class="flex space-x-3 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
-                                <span>탄수화물 <strong>34g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>당류 <strong>4.1g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>단백질 <strong>35g</strong></span>
-                            </div>
-                            <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
-                                <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
-                                <span>복합 탄수화물인 렌틸콩과 병아리콩이 포함되어 식이섬유 섭취에 탁월합니다.</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Nutrition Information -->
 
-                    <!-- 3. 편의점 (Convenience Store) -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
-                        <div class="relative h-32 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="편의점 추천" onerror="this.src='https://placehold.co/400x150/31d000/FFFFFF?text=편의점+식단'">
-                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
-                                <i class="fa-solid fa-store-alt mr-1"></i> 편의점 조합
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
-                                간편 꿀조합
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-base">훈제란 2개 + 무당두유 + 통밀 샌드위치</h3>
-                                    <p class="text-xs text-gray-500 mt-0.5">GS25 / CU / 세븐일레븐 어디서나</p>
-                                </div>
-                                <span class="text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">410 kcal</span>
-                            </div>
-                            <div class="flex space-x-3 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
-                                <span>탄수화물 <strong>38g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>당류 <strong>3.0g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>단백질 <strong>24g</strong></span>
-                            </div>
-                            <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
-                                <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
-                                <span>음료는 반드시 당류 1g 미만의 식물성 무당 두유 또는 아몬드유를 선택하세요.</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
 
-                    <!-- 4. 집밥 (Home Cooked) -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
-                        <div class="relative h-32 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="집밥 추천" onerror="this.src='https://placehold.co/400x150/31d000/FFFFFF?text=집밥+식단'">
-                            <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
-                                <i class="fa-solid fa-house-chimney mr-1"></i> 집밥 레시피
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
-                                저염 건강식
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-base">귀리잡곡밥 + 곤약 잡채 & 두부구이</h3>
-                                    <p class="text-xs text-gray-500 mt-0.5">시금치, 시래기 나물 반찬 포함</p>
-                                </div>
-                                <span class="text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">450 kcal</span>
-                            </div>
-                            <div class="flex space-x-3 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
-                                <span>탄수화물 <strong>58g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>당류 <strong>2.0g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>단백질 <strong>22g</strong></span>
-                            </div>
-                            <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
-                                <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
-                                <span>당면 대신 곤약면을 사용하여 칼로리와 탄수화물을 대폭 줄였습니다.</span>
-                            </div>
-                        </div>
-                    </div>
+                    <span>
+                        탄수화물 <strong>${meal.carbs}</strong>
+                    </span>
+
+                    <span class="text-gray-300">|</span>
+
+                    <span>
+                        당류 <strong>${meal.sugar}</strong>
+                    </span>
+
+                    <span class="text-gray-300">|</span>
+
+                    <span>
+                        단백질 <strong>${meal.protein}</strong>
+                    </span>
 
                 </div>
-            </section>
+
+
+                <!-- Health Recommendation -->
+
+                <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
+
+                    <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
+
+                    <span>${meal.info}</span>
+
+                </div>
+
+
+                <!-- Restaurant Map Button -->
+
+                ${meal.type === "외식" ? `
+
+                    <a href="https://map.naver.com/p/search/${encodeURIComponent(meal.name + ' 맛집')}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="w-full mt-2 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                        지도 열기
+
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+
+                    </a>
+
+                ` : ""}
+
+
+                <!-- Delivery App Button -->
+
+                ${meal.type === "배달" ? `
+
+                    <a href="https://www.baemin.com/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="w-full mt-2 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition">
+
+                        <i class="fa-solid fa-motorcycle"></i>
+
+                        배달의민족 열기
+
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+
+                    </a>
+
+                ` : ""}
+
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+// ==========================================
+// 4. 자동 시간 갱신 및 화면 복귀 감지
+// ==========================================
+
+// 최초 페이지 진입 시 실행
+
+renderMealRecommendations();
+
+
+// 1분마다 시간 확인
+
+setInterval(renderMealRecommendations, 60000);
+
+
+// 다른 탭에서 식단 추천 탭으로 돌아올 때 갱신
+
+document.addEventListener("visibilitychange", () => {
+
+    if (!document.hidden) {
+
+        renderMealRecommendations();
+
+    }
+
+});
+
+
+// 브라우저 창으로 다시 돌아왔을 때 갱신
+
+window.addEventListener("focus", () => {
+
+    renderMealRecommendations();
+
+});
+
+</script>
 
             <!-- 3. AI COACHING TAB PAGE -->
             <section id="tab-coaching" class="tab-content hidden space-y-4">
@@ -519,7 +893,7 @@ setInterval(updateMealRecommendation, 60000);
                                 <i class="fa-solid fa-robot"></i>
                             </div>
                             <div class="bg-gray-100 text-gray-800 p-3 rounded-2xl rounded-tl-none max-w-[80%] leading-relaxed">
-                                안녕하세요 김가천 님! 오늘 어떤 음식을 드셨나요? 또는 혈당 관리에 대해 궁금한 점을 질문해주세요! 🥗
+                                안녕하세요 김가천 님! 오늘 어떤 음식을 드셨나요? 또는 혈당, 혈압 관리에 대해 궁금한 점을 질문해주세요! 🥗
                             </div>
                         </div>
                     </div>
@@ -537,6 +911,9 @@ setInterval(updateMealRecommendation, 60000);
                             <button onclick="sendQuickMessage('외식할 때 나트륨 줄이는 팁 알려줘')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-200 transition">
                                 🧂 외식 나트륨 팁
                             </button>
+                            <button onclick="sendQuickMessage('당뇨와 고혈압 관리에 좋은 건강 간식 추천해줘')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-200 transition">
+                                🍎 간식 메뉴 추천
+                            </button>
                         </div>
                         
                         <!-- Input field -->
@@ -550,248 +927,452 @@ setInterval(updateMealRecommendation, 60000);
                 </div>
             </section>
 
-            <!-- 4. HEALTH RECORDS TAB PAGE -->
-            <section id="tab-health" class="tab-content hidden space-y-4">
-                
-                <!-- Section Header: 혈당/혈압 추이 리포트 -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex items-center justify-between mb-1">
-                        <h2 class="font-bold text-gray-800 text-base flex items-center gap-1.5">
-                            <i class="fa-solid fa-chart-line text-primary"></i> 혈당 & 혈압 추이 그래프
-                        </h2>
-                        <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">최근 7일</span>
-                    </div>
-                    <p class="text-xs text-gray-500">김가천 님의 최근 주간 건강 수치 변화 그래프입니다.</p>
+            
+<!-- 4. HEALTH RECORDS TAB PAGE -->
+<section id="tab-health" class="tab-content hidden space-y-4">
+
+    <!-- Daily Health Input Form (TOP) -->
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-3">
+
+        <h3 class="font-bold text-gray-800 text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-pen-to-square text-primary"></i>
+            오늘 건강 수치 기록하기
+        </h3>
+
+        <div class="space-y-2">
+
+            <div>
+                <label class="text-[10px] text-gray-500 font-medium block mb-1">
+                    측정 시점 선택
+                </label>
+
+                <select id="input-timing"
+                    class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-700 focus:border-primary focus:outline-none">
+
+                    <option value="fasting">공복 혈당</option>
+                    <option value="postmeal" selected>식후 2시간 혈당</option>
+                    <option value="random">수시 (기타)</option>
+
+                </select>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+
+                <div>
+                    <label class="text-[10px] text-gray-500 font-medium">
+                        혈당 수치 (mg/dL)
+                    </label>
+
+                    <input type="number"
+                        id="input-glucose"
+                        placeholder="예: 195"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs mt-1 focus:border-primary focus:outline-none">
                 </div>
 
-                <!-- Blood Sugar Chart Card -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-800 flex items-center gap-1">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> 주간 혈당 추이 (mg/dL)
-                        </span>
-                        <div class="text-[10px] text-gray-400 space-x-2">
-                            <span><span class="text-emerald-500 font-bold">●</span> 공복</span>
-                            <span><span class="text-amber-500 font-bold">●</span> 식후 2h</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-44 relative">
-                        <canvas id="glucoseChart"></canvas>
-                    </div>
-                    <div class="text-[10px] text-gray-500 bg-gray-50 p-2 rounded-lg flex justify-between items-center">
-                        <span>목표 범위: 공복 70~100 / 식후 140 미만</span>
-                        <span class="text-emerald-600 font-bold">평균 118 mg/dL (양호)</span>
-                    </div>
+                <div>
+                    <label class="text-[10px] text-gray-500 font-medium">
+                        혈압 (수축기/이완기)
+                    </label>
+
+                    <input type="text"
+                        id="input-bp"
+                        placeholder="예: 120/80"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs mt-1 focus:border-primary focus:outline-none">
                 </div>
 
-                <!-- Blood Pressure Chart Card -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-800 flex items-center gap-1">
-                            <span class="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span> 주간 혈압 추이 (mmHg)
-                        </span>
-                        <div class="text-[10px] text-gray-400 space-x-2">
-                            <span><span class="text-blue-600 font-bold">●</span> 수축기</span>
-                            <span><span class="text-sky-400 font-bold">●</span> 이완기</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-44 relative">
-                        <canvas id="bpChart"></canvas>
-                    </div>
-                    <div class="text-[10px] text-gray-500 bg-gray-50 p-2 rounded-lg flex justify-between items-center">
-                        <span>정상 범위: 120 / 80 mmHg 이하</span>
-                        <span class="text-blue-600 font-bold">평균 122/81 (주의)</span>
-                    </div>
-                </div>
+            </div>
 
-                <!-- Section Header: 처방 정보 -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="font-bold text-gray-800 text-base flex items-center gap-1.5">
-                                <i class="fa-solid fa-pills text-primary"></i> 김가천 님의 처방 정보
-                            </h2>
-                            <p class="text-xs text-gray-500 mt-1">당뇨 및 고혈압 치료를 위해 복용 중인 약물 정보입니다.</p>
-                        </div>
-                        <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded-full">
-                            복용중 (8건)
-                        </span>
-                    </div>
-                </div>
+        </div>
 
-                <!-- Medication Grid Cards (Expanded with Realistic Pill Images) -->
-                <div class="grid grid-cols-2 gap-3">
-                    
-                    <!-- Med 1: Metformin (메트포르민) -->
-                    <div onclick="openMedModal('메트포르민 (Metformin 500mg)', '당뇨병 치료제 (빅구아니드계)', '1일 2회 (아침/저녁 식사 직후)', '간에서 당 생성을 억제하고 인슐린 민감성을 향상시킵니다. 위장 장애 예방을 위해 반드시 식사 직후 또는 식사 중에 복용하세요.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '흰색 장방형(타원) 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="메트포르민 식별표시">
-                                <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">당뇨약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">메트포르민</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">500mg · 1일 2회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">⚪ 흰색 장방형 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
+        <button onclick="saveHealthData()"
+            class="w-full py-2.5 bg-primary hover:bg-primaryDark text-white text-xs font-bold rounded-xl shadow transition">
+            <i class="fa-solid fa-floppy-disk mr-1"></i>
+            기록 저장하기
+        </button>
 
-                    <!-- Med 2: Sitagliptin (시타글립틴 / 자누비아) -->
-                    <div onclick="openMedModal('시타글립틴 (Sitagliptin 100mg)', 'DPP-4 억제제 (당뇨병 치료제)', '1일 1회 (식사 여부 상관없이)', '인슐린 분비를 촉진하고 글루카곤 분비를 억제하여 식후 혈당 및 공복 혈당을 조절합니다.', 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80', '베이지색(연주황) 원형 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="시타글립틴">
-                                <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">당뇨약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">시타글립틴</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">100mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🟠 연베이지 원형 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
+    </div>
 
-                    <!-- Med 3: Glimepiride (글리메피리드 / 아마릴) -->
-                    <div onclick="openMedModal('글리메피리드 (Glimepiride 2mg)', '설포닐우레아계 (당뇨병 치료제)', '1일 1회 (아침 첫 식사 직전/직후)', '췌장 람게르한스섬을 자극해 인슐린 분비를 촉진시킵니다. 식사를 거르면 저혈당 위험이 있으므로 식사를 제때 하셔야 합니다.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '연분홍색 장방형 정제 (분할선 있음)')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="글리메피리드">
-                                <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">당뇨약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">글리메피리드</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">2mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🌸 연분홍 타원 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
 
-                    <!-- Med 4: Empagliflozin (엠파글리플로진 / 자디앙) -->
-                    <div onclick="openMedModal('엠파글리플로진 (Empagliflozin 10mg)', 'SGLT2 억제제 (당뇨 및 심장/신장 보호)', '1일 1회 (아침 식사 전후)', '소변으로 과도한 당 배출을 유도하여 혈당과 체중을 줄여줍니다. 복용 중 충분한 수분 섭취(물 자주 마시기)가 중요합니다.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '연노란색 타원형 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="엠파글리플로진">
-                                <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">당뇨약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">엠파글리플로진</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">10mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🟡 연노랑 타원 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
+    <!-- Section Header: 혈당/혈압 추이 리포트 -->
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
 
-                    <!-- Med 5: Amlodipine (암로디핀 / 노바스크) -->
-                    <div onclick="openMedModal('암로디핀 (Amlodipine 5mg)', '칼슘채널차단제 (고혈압 치료제)', '1일 1회 (아침 일정 시간)', '혈관 평활근을 이완시켜 혈관 저항을 낮추고 혈압을 안정시킵니다. 자몽주스와 함께 복용하지 마세요.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '흰색 팔각형/타원형 정제')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="암로디핀">
-                                <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">혈압약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">암로디핀</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">5mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">⚪ 흰색 팔각/원형 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
+        <div class="flex items-center justify-between mb-1">
 
-                    <!-- Med 6: Telmisartan (텔미사르탄 / 미카르디스) -->
-                    <div onclick="openMedModal('텔미사르탄 (Telmisartan 40mg)', 'ARB 계열 (혈압 조절 및 심혈관 보호)', '1일 1회 (아침 식후)', '혈관 수축 물질(안지오텐신II)을 차단하여 혈압을 낮추고 표적 장기(심장, 신장)를 보호합니다.', 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80', '흰색/적갈색 이중층 타원형 정제')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="텔미사르탄">
-                                <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">혈압약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">텔미사르탄</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">40mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🔴⚪ 백색/붉은 이중정</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
+            <h2 class="font-bold text-gray-800 text-base flex items-center gap-1.5">
+                <i class="fa-solid fa-chart-line text-primary"></i>
+                혈당 & 혈압 추이 그래프
+            </h2>
 
-                    <!-- Med 7: Losartan/HCTZ (로사르탄/히드로클로로티아지드) -->
-                    <div onclick="openMedModal('로사르탄 복합제 (Losartan/HCTZ 50/12.5mg)', 'ARB + 이뇨제 복합 고혈압 치료제', '1일 1회 (아침 매일 같은 시간)', '혈관 확장 작용과 함께 소변을 통한 나트륨 배출을 도와 강압 효과를 높입니다.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '황색 원형 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="로사르탄 복합제">
-                                <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">혈압약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">로사르탄 복합제</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">50/12.5mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🟡 황색 원형 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
+                최근 7일
+            </span>
 
-                    <!-- Med 8: Atorvastatin (아토르바스타틴 / 리피토) -->
-                    <div onclick="openMedModal('아토르바스타틴 (Atorvastatin 10mg)', 'HMG-CoA 환원효소 억제제 (이상지질혈증 치료제)', '1일 1회 (저녁 또는 취침 전)', '혈중 LDL 콜레스테롤과 중성지방을 낮추고 동맥경화 예방을 위해 당뇨/고혈압 환자에게 동시 처방됩니다.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '흰색 타원형 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="아토르바스타틴">
-                                <span class="absolute top-1.5 right-1.5 bg-purple-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">고지혈증</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">아토르바스타틴</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">10mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">⚪ 흰색 타원 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
+        </div>
+
+        <p class="text-xs text-gray-500">
+            김가천 님의 최근 주간 건강 수치 변화 그래프입니다.
+        </p>
+
+    </div>
+
+
+    <!-- Blood Sugar Chart Card -->
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-2">
+
+        <div class="flex justify-between items-center">
+
+            <span class="text-xs font-bold text-gray-800 flex items-center gap-1">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                주간 혈당 추이 (mg/dL)
+            </span>
+
+            <div class="text-[10px] text-gray-400 space-x-2">
+                <span><span class="text-emerald-500 font-bold">●</span> 공복</span>
+                <span><span class="text-amber-500 font-bold">●</span> 식후 2h</span>
+            </div>
+
+        </div>
+
+        <div class="w-full h-44 relative">
+            <canvas id="glucoseChart"></canvas>
+        </div>
+
+        <div class="text-[10px] text-gray-500 bg-gray-50 p-2 rounded-lg flex justify-between items-center">
+
+            <span>목표 범위: 공복 70~100 / 식후 140 미만</span>
+
+            <span class="text-emerald-600 font-bold">
+                평균 118 mg/dL (양호)
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Blood Pressure Chart Card -->
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-2">
+
+        <div class="flex justify-between items-center">
+
+            <span class="text-xs font-bold text-gray-800 flex items-center gap-1">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span>
+                주간 혈압 추이 (mmHg)
+            </span>
+
+            <div class="text-[10px] text-gray-400 space-x-2">
+                <span><span class="text-blue-600 font-bold">●</span> 수축기</span>
+                <span><span class="text-sky-400 font-bold">●</span> 이완기</span>
+            </div>
+
+        </div>
+
+        <div class="w-full h-44 relative">
+            <canvas id="bpChart"></canvas>
+        </div>
+
+        <div class="text-[10px] text-gray-500 bg-gray-50 p-2 rounded-lg flex justify-between items-center">
+
+            <span>정상 범위: 120 / 80 mmHg 이하</span>
+
+            <span class="text-blue-600 font-bold">
+                평균 122/81 (주의)
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Section Header: 처방 정보 -->
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+
+        <div class="flex items-center justify-between">
+
+            <div>
+
+                <h2 class="font-bold text-gray-800 text-base flex items-center gap-1.5">
+                    <i class="fa-solid fa-pills text-primary"></i>
+                    김가천 님의 처방 정보
+                </h2>
+
+                <p class="text-xs text-gray-500 mt-1">
+                    당뇨 및 고혈압 치료를 위해 복용 중인 약물 정보입니다.
+                </p>
+
+            </div>
+
+            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded-full">
+                복용중 (8건)
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Medication Grid Cards -->
+    <div class="grid grid-cols-2 gap-3">
+
+
+        <!-- Med 1: Metformin -->
+        <div onclick="openMedModal('메트포르민 (Metformin 500mg)', '당뇨병 치료제 (빅구아니드계)', '1일 2회 (아침/저녁 식사 직후)', '간에서 당 생성을 억제하고 인슐린 민감성을 향상시킵니다. 위장 장애 예방을 위해 반드시 식사 직후 또는 식사 중에 복용하세요.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '흰색 장방형(타원) 필름코팅정')"
+            class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
+
+            <div>
+                <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
+
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80"
+                        class="w-full h-full object-cover rounded-lg"
+                        alt="메트포르민 식별표시">
+
+                    <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                        당뇨약
+                    </span>
 
                 </div>
 
-                <!-- Daily Health Input Form -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-3">
-                    <h3 class="font-bold text-gray-800 text-xs flex items-center gap-1.5">
-                        <i class="fa-solid fa-pen-to-square text-primary"></i> 오늘 건강 수치 기록하기
-                    </h3>
-                    
-                    <div class="space-y-2">
-                        <div>
-                            <label class="text-[10px] text-gray-500 font-medium block mb-1">측정 시점 선택</label>
-                            <select id="input-timing" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-700 focus:border-primary focus:outline-none">
-                                <option value="fasting">공복 혈당</option>
-                                <option value="postmeal" selected>식후 2시간 혈당</option>
-                                <option value="random">수시 (기타)</option>
-                            </select>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="text-[10px] text-gray-500 font-medium">혈당 수치 (mg/dL)</label>
-                                <input type="number" id="input-glucose" placeholder="예: 195" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs mt-1 focus:border-primary focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="text-[10px] text-gray-500 font-medium">혈압 (수축기/이완기)</label>
-                                <input type="text" id="input-bp" placeholder="예: 120/80" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs mt-1 focus:border-primary focus:outline-none">
-                            </div>
-                        </div>
-                    </div>
+                <h3 class="font-bold text-gray-800 text-xs truncate">메트포르민</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">500mg · 1일 2회</p>
+                <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">
+                    ⚪ 흰색 장방형 정제
+                </p>
+            </div>
 
-                    <button onclick="saveHealthData()" class="w-full py-2.5 bg-primary hover:bg-primaryDark text-white text-xs font-bold rounded-xl shadow transition">
-                        기록 저장하기
-                    </button>
+            <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
+                <span>식별 정보 보기</span>
+                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Med 2: Sitagliptin -->
+        <div onclick="openMedModal('시타글립틴 (Sitagliptin 100mg)', 'DPP-4 억제제 (당뇨병 치료제)', '1일 1회 (식사 여부 상관없이)', '인슐린 분비를 촉진하고 글루카곤 분비를 억제하여 식후 혈당 및 공복 혈당을 조절합니다.', 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80', '베이지색(연주황) 원형 필름코팅정')"
+            class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
+
+            <div>
+                <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
+
+                    <img src="https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80"
+                        class="w-full h-full object-cover rounded-lg"
+                        alt="시타글립틴">
+
+                    <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                        당뇨약
+                    </span>
+
                 </div>
-            </section>
+
+                <h3 class="font-bold text-gray-800 text-xs truncate">시타글립틴</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">100mg · 1일 1회</p>
+                <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">
+                    🟠 연베이지 원형 정제
+                </p>
+            </div>
+
+            <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
+                <span>식별 정보 보기</span>
+                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Med 3: Glimepiride -->
+        <div onclick="openMedModal('글리메피리드 (Glimepiride 2mg)', '설포닐우레아계 (당뇨병 치료제)', '1일 1회 (아침 첫 식사 직전/직후)', '췌장 랑게르한스섬을 자극해 인슐린 분비를 촉진시킵니다. 식사를 거르면 저혈당 위험이 있으므로 식사를 제때 하셔야 합니다.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '연분홍색 장방형 정제 (분할선 있음)')"
+            class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
+
+            <div>
+                <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
+
+                    <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80"
+                        class="w-full h-full object-cover rounded-lg"
+                        alt="글리메피리드">
+
+                    <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                        당뇨약
+                    </span>
+
+                </div>
+
+                <h3 class="font-bold text-gray-800 text-xs truncate">글리메피리드</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">2mg · 1일 1회</p>
+                <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">
+                    🌸 연분홍 타원 정제
+                </p>
+            </div>
+
+            <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
+                <span>식별 정보 보기</span>
+                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Med 4: Empagliflozin -->
+        <div onclick="openMedModal('엠파글리플로진 (Empagliflozin 10mg)', 'SGLT2 억제제 (당뇨 및 심장/신장 보호)', '1일 1회 (아침 식사 전후)', '소변으로 과도한 당 배출을 유도하여 혈당과 체중을 줄여줍니다. 복용 중 충분한 수분 섭취가 중요합니다.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '연노란색 타원형 필름코팅정')"
+            class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
+
+            <div>
+                <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
+
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80"
+                        class="w-full h-full object-cover rounded-lg"
+                        alt="엠파글리플로진">
+
+                    <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                        당뇨약
+                    </span>
+
+                </div>
+
+                <h3 class="font-bold text-gray-800 text-xs truncate">엠파글리플로진</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">10mg · 1일 1회</p>
+                <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">
+                    🟡 연노랑 타원 정제
+                </p>
+            </div>
+
+            <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
+                <span>식별 정보 보기</span>
+                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Med 5: Amlodipine -->
+        <div onclick="openMedModal('암로디핀 (Amlodipine 5mg)', '칼슘채널차단제 (고혈압 치료제)', '1일 1회 (매일 일정 시간)', '혈관 평활근을 이완시켜 혈관 저항을 낮추고 혈압을 안정시킵니다.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '흰색 팔각형/타원형 정제')"
+            class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
+
+            <div>
+                <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
+
+                    <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80"
+                        class="w-full h-full object-cover rounded-lg"
+                        alt="암로디핀">
+
+                    <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                        혈압약
+                    </span>
+
+                </div>
+
+                <h3 class="font-bold text-gray-800 text-xs truncate">암로디핀</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">5mg · 1일 1회</p>
+                <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">
+                    ⚪ 흰색 팔각/원형 정제
+                </p>
+            </div>
+
+            <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
+                <span>식별 정보 보기</span>
+                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Med 6: Telmisartan -->
+        <div onclick="openMedModal('텔미사르탄 (Telmisartan 40mg)', 'ARB 계열 (혈압 조절 및 심혈관 보호)', '1일 1회 (매일 일정 시간)', '혈관 수축 물질인 안지오텐신II를 차단하여 혈압을 낮추고 심장과 신장을 보호하는 데 도움을 줍니다.', 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80', '흰색/적갈색 이중층 타원형 정제')"
+            class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
+
+            <div>
+                <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
+
+                    <img src="https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80"
+                        class="w-full h-full object-cover rounded-lg"
+                        alt="텔미사르탄">
+
+                    <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                        혈압약
+                    </span>
+
+                </div>
+
+                <h3 class="font-bold text-gray-800 text-xs truncate">텔미사르탄</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">40mg · 1일 1회</p>
+                <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">
+                    🔴⚪ 백색/붉은 이중정
+                </p>
+            </div>
+
+            <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
+                <span>식별 정보 보기</span>
+                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Med 7: Losartan/HCTZ -->
+        <div onclick="openMedModal('로사르탄 복합제 (Losartan/HCTZ 50/12.5mg)', 'ARB + 이뇨제 복합 고혈압 치료제', '1일 1회 (아침 매일 같은 시간)', '혈관 확장 작용과 함께 소변을 통한 나트륨 배출을 도와 혈압을 조절합니다.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '황색 원형 필름코팅정')"
+            class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
+
+            <div>
+                <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
+
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80"
+                        class="w-full h-full object-cover rounded-lg"
+                        alt="로사르탄 복합제">
+
+                    <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                        혈압약
+                    </span>
+
+                </div>
+
+                <h3 class="font-bold text-gray-800 text-xs truncate">로사르탄 복합제</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">50/12.5mg · 1일 1회</p>
+                <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">
+                    🟡 황색 원형 정제
+                </p>
+            </div>
+
+            <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
+                <span>식별 정보 보기</span>
+                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Med 8: Atorvastatin -->
+        <div onclick="openMedModal('아토르바스타틴 (Atorvastatin 10mg)', 'HMG-CoA 환원효소 억제제 (이상지질혈증 치료제)', '1일 1회 (매일 일정 시간)', '혈중 LDL 콜레스테롤을 낮추고 심혈관질환 위험을 관리하기 위해 처방될 수 있습니다.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '흰색 타원형 필름코팅정')"
+            class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
+
+            <div>
+                <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
+
+                    <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80"
+                        class="w-full h-full object-cover rounded-lg"
+                        alt="아토르바스타틴">
+
+                    <span class="absolute top-1.5 right-1.5 bg-purple-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                        고지혈증
+                    </span>
+
+                </div>
+
+                <h3 class="font-bold text-gray-800 text-xs truncate">아토르바스타틴</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">10mg · 1일 1회</p>
+                <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">
+                    ⚪ 흰색 타원 정제
+                </p>
+            </div>
+
+            <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
+                <span>식별 정보 보기</span>
+                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
             <!-- 5. MY PAGE TAB PAGE -->
             <section id="tab-mypage" class="tab-content hidden space-y-4">
