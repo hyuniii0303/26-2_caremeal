@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>케어밀 - Care Meal</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icon CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Google Fonts Pretentard/Noto Sans KR -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             theme: {
@@ -32,39 +27,17 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f0f2f5;
-            -webkit-tap-highlight-color: transparent;
-        }
-        /* Hide scrollbars while keeping scroll functionality */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .app-shadow {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-        }
-        /* Mobile simulator frame centering on wider screens */
-        .mobile-frame {
-            max-width: 440px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background-color: #f8f9fa;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f0f2f5; -webkit-tap-highlight-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .app-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01); }
+        .mobile-frame { max-width: 440px; margin: 0 auto; min-height: 100vh; background-color: #f8f9fa; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="bg-slate-100 flex justify-center items-center min-h-screen p-0 sm:p-4">
 
-    <!-- Mobile Screen Frame Container -->
     <div class="mobile-frame w-full min-h-screen flex flex-col justify-between overflow-hidden relative sm:rounded-3xl border-0 sm:border border-gray-200">
 
-        <!-- HEADER AREA -->
         <header class="bg-white px-5 pt-5 pb-3 sticky top-0 z-30 flex items-center justify-between border-b border-gray-100">
             <div class="flex items-center space-x-2">
                 <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg">
@@ -80,12 +53,10 @@
             </div>
         </header>
 
-        <!-- MAIN CONTENT CONTAINER (Scrollable) -->
         <main id="content-container" class="flex-1 overflow-y-auto pb-24 px-4 pt-4 no-scrollbar">
 
             <!-- 1. HOME TAB PAGE -->
             <section id="tab-home" class="tab-content space-y-5">
-                <!-- User Greeting Banner -->
                 <div class="bg-gradient-to-r from-primary to-emerald-600 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden">
                     <div class="absolute -right-4 -bottom-4 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
                     <div class="relative z-10">
@@ -98,7 +69,6 @@
                     </div>
                 </div>
 
-                <!-- Main Lunch Recommendation Card -->
                 <div class="bg-white rounded-2xl p-4 border border-gray-100 app-shadow space-y-3">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-bold text-primary bg-primaryLight px-2.5 py-1 rounded-md flex items-center gap-1">
@@ -108,14 +78,13 @@
                     </div>
 
                     <div class="flex items-center space-x-4">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80" alt="현미밥 포케" class="w-20 h-20 rounded-xl object-cover shadow-sm border border-gray-100" onerror="this.src='https://placehold.co/150x150/31d000/FFFFFF?text=포케'">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80" alt="현미밥 포케" class="w-20 h-20 rounded-xl object-cover shadow-sm border border-gray-100">
                         <div class="flex-1">
                             <h2 class="text-lg font-bold text-gray-800 leading-snug">오늘 점심은<br><span class="text-primaryDark">현미밥 포케</span> 어떤가요?</h2>
                             <p class="text-xs text-gray-500 mt-1">풍부한 식이섬유와 연어 아보카도로 혈당 급상승을 방지해요.</p>
                         </div>
                     </div>
 
-                    <!-- Nutrition Pills -->
                     <div class="grid grid-cols-4 gap-2 pt-2 border-t border-gray-100 text-center text-xs">
                         <div class="bg-gray-50 p-2 rounded-lg">
                             <div class="text-gray-400 text-[10px]">열량</div>
@@ -140,952 +109,146 @@
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </button>
                 </div>
-
-                <!-- Today Health Summary Widgets -->
-                <div>
-                    <div class="flex justify-between items-center mb-2.5">
-                        <h3 class="font-bold text-gray-800 text-sm">오늘의 건강 요약</h3>
-                        <button onclick="switchTab('tab-health')" class="text-xs text-gray-400 hover:text-primary">자세히 보기 &gt;</button>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <!-- Blood Glucose Card -->
-                        <div class="bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
-                            <div class="flex justify-between items-start">
-                                <span class="text-xs text-gray-500 font-medium">공복 혈당</span>
-                                <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-1.5 py-0.5 rounded">정상</span>
-                            </div>
-                            <div class="my-2">
-                                <span class="text-xl font-extrabold text-gray-800">98</span>
-                                <span class="text-xs text-gray-400 font-normal"> mg/dL</span>
-                            </div>
-                            <div class="text-[10px] text-gray-400">목표: 70 ~ 100 mg/dL</div>
-                        </div>
-
-                        <!-- Blood Pressure Card -->
-                        <div class="bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
-                            <div class="flex justify-between items-start">
-                                <span class="text-xs text-gray-500 font-medium">최근 혈압</span>
-                                <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-1.5 py-0.5 rounded">주의 관리</span>
-                            </div>
-                            <div class="my-2">
-                                <span class="text-xl font-extrabold text-gray-800">124/82</span>
-                                <span class="text-xs text-gray-400 font-normal"> mmHg</span>
-                            </div>
-                            <div class="text-[10px] text-gray-400">목표: 120/80 이하</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick AI Coaching Banner -->
-                <div onclick="switchTab('tab-coaching')" class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center space-x-3 cursor-pointer hover:bg-emerald-100/70 transition">
-                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-lg shrink-0">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="text-xs font-bold text-primaryDark">AI 만성질환 코치</div>
-                        <p class="text-xs text-gray-700 font-medium truncate">"오늘 드신 식단이 혈당에 미친 영향이 궁금하신가요?"</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
-                </div>
             </section>
 
-            <!-- 2. DIET RECOMMENDATION TAB PAGE -->
+            <!-- 2. RECOMMEND TAB -->
             <section id="tab-recommend" class="tab-content hidden space-y-4">
-                <!-- Section Title -->
                 <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
-                        <h2 class="font-bold text-gray-800 text-base">김가천 님을 위한 오늘의 메뉴</h2>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-1">당뇨병 및 고혈압 관리를 위한 맞춤형 점심 추천 식단입니다.</p>
+                    <h2 class="font-bold text-gray-800 text-base">김가천 님을 위한 오늘의 메뉴</h2>
+                    <p class="text-xs text-gray-500 mt-1">당뇨병 및 고혈압 관리를 위한 맞춤형 추천 식단입니다.</p>
                 </div>
-
-                <!-- Meal Context Filter Cards (외식, 배달, 편의점, 집밥) -->
                 <div class="space-y-3">
-                    
-                    <!-- 1. 외식 (Dining Out) -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
-                        <div class="relative h-32 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="외식 추천" onerror="this.src='https://placehold.co/400x150/31d000/FFFFFF?text=외식+포케'">
-                            <span class="absolute top-3 left-3 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
-                                <i class="fa-solid fa-store mr-1"></i> 외식
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
-                                혈당 지수(GI) Low
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-base">현미 생연어 포케 보울</h3>
-                                    <p class="text-xs text-gray-500 mt-0.5">추천 브랜드: 슬로우캘리, 포케올데이 등</p>
-                                </div>
-                                <span class="text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">480 kcal</span>
-                            </div>
-                            <!-- Nutrients -->
-                            <div class="flex space-x-3 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
-                                <span>탄수화물 <strong>52g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>당류 <strong>2.8g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>단백질 <strong>26g</strong></span>
-                            </div>
-                            <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
-                                <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
-                                <span>소스는 '스리라차 마요' 또는 '오리엔탈'을 절반만 찍어서 드시는 것을 권장합니다.</span>
-                            </div>
-                        </div>
+                    <div class="bg-white rounded-2xl p-4 border border-gray-100">
+                        <span class="bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">외식</span>
+                        <h3 class="font-bold text-gray-800 text-base mt-2">현미 생연어 포케 보울</h3>
+                        <p class="text-xs text-gray-500">탄수화물 52g | 당류 2.8g | 단백질 26g</p>
                     </div>
-
-                    <!-- 2. 배달 (Delivery) -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
-                        <div class="relative h-32 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="배달 추천" onerror="this.src='https://placehold.co/400x150/31d000/FFFFFF?text=배달+샐러드'">
-                            <span class="absolute top-3 left-3 bg-blue-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
-                                <i class="fa-solid fa-motorcycle mr-1"></i> 배달
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
-                                고단백 · 저염
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-base">수비드 닭가슴살 & 렌틸콩 샐러드</h3>
-                                    <p class="text-xs text-gray-500 mt-0.5">배달의민족 / 쿠팡이츠 샐러드 전문점</p>
-                                </div>
-                                <span class="text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">390 kcal</span>
-                            </div>
-                            <div class="flex space-x-3 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
-                                <span>탄수화물 <strong>34g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>당류 <strong>4.1g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>단백질 <strong>35g</strong></span>
-                            </div>
-                            <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
-                                <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
-                                <span>복합 탄수화물인 렌틸콩과 병아리콩이 포함되어 식이섬유 섭취에 탁월합니다.</span>
-                            </div>
-                        </div>
+                    <div class="bg-white rounded-2xl p-4 border border-gray-100">
+                        <span class="bg-blue-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">배달</span>
+                        <h3 class="font-bold text-gray-800 text-base mt-2">수비드 닭가슴살 샐러드</h3>
+                        <p class="text-xs text-gray-500">탄수화물 34g | 당류 4.1g | 단백질 35g</p>
                     </div>
-
-                    <!-- 3. 편의점 (Convenience Store) -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
-                        <div class="relative h-32 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="편의점 추천" onerror="this.src='https://placehold.co/400x150/31d000/FFFFFF?text=편의점+식단'">
-                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
-                                <i class="fa-solid fa-store-alt mr-1"></i> 편의점 조합
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
-                                간편 꿀조합
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-base">훈제란 2개 + 무당두유 + 통밀 샌드위치</h3>
-                                    <p class="text-xs text-gray-500 mt-0.5">GS25 / CU / 세븐일레븐 어디서나</p>
-                                </div>
-                                <span class="text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">410 kcal</span>
-                            </div>
-                            <div class="flex space-x-3 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
-                                <span>탄수화물 <strong>38g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>당류 <strong>3.0g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>단백질 <strong>24g</strong></span>
-                            </div>
-                            <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
-                                <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
-                                <span>음료는 반드시 당류 1g 미만의 식물성 무당 두유 또는 아몬드유를 선택하세요.</span>
-                            </div>
-                        </div>
+                    <div class="bg-white rounded-2xl p-4 border border-gray-100">
+                        <span class="bg-purple-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">편의점</span>
+                        <h3 class="font-bold text-gray-800 text-base mt-2">훈제란 + 무당두유 + 통밀샌드위치</h3>
+                        <p class="text-xs text-gray-500">탄수화물 38g | 당류 3.0g | 단백질 24g</p>
                     </div>
-
-                    <!-- 4. 집밥 (Home Cooked) -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 app-shadow hover:border-emerald-300 transition">
-                        <div class="relative h-32 bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="집밥 추천" onerror="this.src='https://placehold.co/400x150/31d000/FFFFFF?text=집밥+식단'">
-                            <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">
-                                <i class="fa-solid fa-house-chimney mr-1"></i> 집밥 레시피
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded">
-                                저염 건강식
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-base">귀리잡곡밥 + 곤약 잡채 & 두부구이</h3>
-                                    <p class="text-xs text-gray-500 mt-0.5">시금치, 시래기 나물 반찬 포함</p>
-                                </div>
-                                <span class="text-xs font-bold text-primary bg-primaryLight px-2 py-1 rounded">450 kcal</span>
-                            </div>
-                            <div class="flex space-x-3 text-xs text-gray-600 bg-gray-50 p-2 rounded-lg">
-                                <span>탄수화물 <strong>58g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>당류 <strong>2.0g</strong></span>
-                                <span class="text-gray-300">|</span>
-                                <span>단백질 <strong>22g</strong></span>
-                            </div>
-                            <div class="text-[11px] text-emerald-700 bg-emerald-50 p-2 rounded-lg flex items-start gap-1.5">
-                                <i class="fa-solid fa-circle-info text-xs mt-0.5 shrink-0"></i>
-                                <span>당면 대신 곤약면을 사용하여 칼로리와 탄수화물을 대폭 줄였습니다.</span>
-                            </div>
-                        </div>
+                    <div class="bg-white rounded-2xl p-4 border border-gray-100">
+                        <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">집밥</span>
+                        <h3 class="font-bold text-gray-800 text-base mt-2">귀리잡곡밥 + 곤약 잡채 & 두부구이</h3>
+                        <p class="text-xs text-gray-500">탄수화물 58g | 당류 2.0g | 단백질 22g</p>
                     </div>
-
                 </div>
             </section>
 
-            <!-- 3. AI COACHING TAB PAGE -->
+            <!-- 3. AI COACHING TAB -->
             <section id="tab-coaching" class="tab-content hidden space-y-4">
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-lg">
-                            <i class="fa-solid fa-robot"></i>
-                        </div>
-                        <div>
-                            <h2 class="font-bold text-gray-800 text-sm">AI 당뇨·고혈압 건강 코치</h2>
-                            <p class="text-[11px] text-emerald-600 flex items-center gap-1">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> 실시간 상담 가능
-                            </p>
-                        </div>
-                    </div>
+                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+                    <h2 class="font-bold text-gray-800 text-sm">AI 당뇨·고혈압 건강 코치</h2>
                 </div>
-
-                <!-- Chat Box Area -->
-                <div id="chat-box" class="bg-white rounded-2xl p-4 border border-gray-100 app-shadow min-h-[360px] flex flex-col justify-between space-y-4">
-                    <div id="chat-messages" class="space-y-3 overflow-y-auto max-h-[300px] text-xs pr-1">
-                        <!-- AI Welcome Message -->
-                        <div class="flex items-start space-x-2">
-                            <div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs shrink-0">
-                                <i class="fa-solid fa-robot"></i>
-                            </div>
-                            <div class="bg-gray-100 text-gray-800 p-3 rounded-2xl rounded-tl-none max-w-[80%] leading-relaxed">
-                                안녕하세요 김가천 님! 오늘 어떤 음식을 드셨나요? 또는 혈당 관리에 대해 궁금한 점을 질문해주세요! 🥗
-                            </div>
-                        </div>
+                <div class="bg-white rounded-2xl p-4 border border-gray-100 min-h-[300px] flex flex-col justify-between">
+                    <div id="chat-messages" class="text-xs space-y-2">
+                        <div class="bg-gray-100 p-3 rounded-xl">안녕하세요 김가천 님! 식단 및 혈당에 대해 무엇이든 물어보세요!</div>
                     </div>
-
-                    <!-- Quick Prompt Chips -->
-                    <div class="space-y-2 pt-2 border-t border-gray-100">
-                        <div class="text-[10px] text-gray-400 font-medium">자주 묻는 질문</div>
-                        <div class="flex flex-wrap gap-1.5">
-                            <button onclick="sendQuickMessage('혈당 조절에 좋은 저녁 메뉴 추천해줘')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-200 transition">
-                                🌙 저녁 메뉴 추천
-                            </button>
-                            <button onclick="sendQuickMessage('식후 혈당이 160 나왔는데 괜찮은가요?')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-200 transition">
-                                📊 식후 혈당 문의
-                            </button>
-                            <button onclick="sendQuickMessage('외식할 때 나트륨 줄이는 팁 알려줘')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-200 transition">
-                                🧂 외식 나트륨 팁
-                            </button>
-                        </div>
-                        
-                        <!-- Input field -->
-                        <div class="flex space-x-2 pt-1">
-                            <input type="text" id="user-input" placeholder="메시지를 입력하세요..." class="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-primary">
-                            <button onclick="sendMessage()" class="bg-primary hover:bg-primaryDark text-white px-3.5 py-2 rounded-xl text-xs font-bold transition">
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </div>
+                    <div class="flex gap-2 pt-2 border-t">
+                        <input type="text" id="user-input" placeholder="메시지 입력..." class="flex-1 bg-gray-50 border p-2 text-xs rounded-xl">
+                        <button onclick="sendMessage()" class="bg-primary text-white px-3 py-2 text-xs font-bold rounded-xl">전송</button>
                     </div>
                 </div>
             </section>
 
-            <!-- 4. HEALTH RECORDS TAB PAGE -->
+            <!-- 4. HEALTH RECORDS TAB -->
             <section id="tab-health" class="tab-content hidden space-y-4">
-                
-                <!-- Section Header: 혈당/혈압 추이 리포트 -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex items-center justify-between mb-1">
-                        <h2 class="font-bold text-gray-800 text-base flex items-center gap-1.5">
-                            <i class="fa-solid fa-chart-line text-primary"></i> 혈당 & 혈압 추이 그래프
-                        </h2>
-                        <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">최근 7일</span>
-                    </div>
-                    <p class="text-xs text-gray-500">김가천 님의 최근 주간 건강 수치 변화 그래프입니다.</p>
+                <div class="bg-white p-4 rounded-2xl border border-gray-100">
+                    <h2 class="font-bold text-gray-800 text-base">혈당 & 혈압 추이</h2>
+                    <div class="h-40 mt-2"><canvas id="glucoseChart"></canvas></div>
                 </div>
-
-                <!-- Blood Sugar Chart Card -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-800 flex items-center gap-1">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> 주간 혈당 추이 (mg/dL)
-                        </span>
-                        <div class="text-[10px] text-gray-400 space-x-2">
-                            <span><span class="text-emerald-500 font-bold">●</span> 공복</span>
-                            <span><span class="text-amber-500 font-bold">●</span> 식후 2h</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-44 relative">
-                        <canvas id="glucoseChart"></canvas>
-                    </div>
-                    <div class="text-[10px] text-gray-500 bg-gray-50 p-2 rounded-lg flex justify-between items-center">
-                        <span>목표 범위: 공복 70~100 / 식후 140 미만</span>
-                        <span class="text-emerald-600 font-bold">평균 118 mg/dL (양호)</span>
-                    </div>
-                </div>
-
-                <!-- Blood Pressure Chart Card -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gray-800 flex items-center gap-1">
-                            <span class="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span> 주간 혈압 추이 (mmHg)
-                        </span>
-                        <div class="text-[10px] text-gray-400 space-x-2">
-                            <span><span class="text-blue-600 font-bold">●</span> 수축기</span>
-                            <span><span class="text-sky-400 font-bold">●</span> 이완기</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-44 relative">
-                        <canvas id="bpChart"></canvas>
-                    </div>
-                    <div class="text-[10px] text-gray-500 bg-gray-50 p-2 rounded-lg flex justify-between items-center">
-                        <span>정상 범위: 120 / 80 mmHg 이하</span>
-                        <span class="text-blue-600 font-bold">평균 122/81 (주의)</span>
-                    </div>
-                </div>
-
-                <!-- Section Header: 처방 정보 -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="font-bold text-gray-800 text-base flex items-center gap-1.5">
-                                <i class="fa-solid fa-pills text-primary"></i> 김가천 님의 처방 정보
-                            </h2>
-                            <p class="text-xs text-gray-500 mt-1">당뇨 및 고혈압 치료를 위해 복용 중인 약물 정보입니다.</p>
-                        </div>
-                        <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded-full">
-                            복용중 (8건)
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Medication Grid Cards (Expanded with Realistic Pill Images) -->
-                <div class="grid grid-cols-2 gap-3">
-                    
-                    <!-- Med 1: Metformin (메트포르민) -->
-                    <div onclick="openMedModal('메트포르민 (Metformin 500mg)', '당뇨병 치료제 (빅구아니드계)', '1일 2회 (아침/저녁 식사 직후)', '간에서 당 생성을 억제하고 인슐린 민감성을 향상시킵니다. 위장 장애 예방을 위해 반드시 식사 직후 또는 식사 중에 복용하세요.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '흰색 장방형(타원) 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="메트포르민 식별표시">
-                                <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">당뇨약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">메트포르민</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">500mg · 1일 2회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">⚪ 흰색 장방형 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
-
-                    <!-- Med 2: Sitagliptin (시타글립틴 / 자누비아) -->
-                    <div onclick="openMedModal('시타글립틴 (Sitagliptin 100mg)', 'DPP-4 억제제 (당뇨병 치료제)', '1일 1회 (식사 여부 상관없이)', '인슐린 분비를 촉진하고 글루카곤 분비를 억제하여 식후 혈당 및 공복 혈당을 조절합니다.', 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80', '베이지색(연주황) 원형 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="시타글립틴">
-                                <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">당뇨약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">시타글립틴</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">100mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🟠 연베이지 원형 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
-
-                    <!-- Med 3: Glimepiride (글리메피리드 / 아마릴) -->
-                    <div onclick="openMedModal('글리메피리드 (Glimepiride 2mg)', '설포닐우레아계 (당뇨병 치료제)', '1일 1회 (아침 첫 식사 직전/직후)', '췌장 람게르한스섬을 자극해 인슐린 분비를 촉진시킵니다. 식사를 거르면 저혈당 위험이 있으므로 식사를 제때 하셔야 합니다.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '연분홍색 장방형 정제 (분할선 있음)')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="글리메피리드">
-                                <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">당뇨약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">글리메피리드</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">2mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🌸 연분홍 타원 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
-
-                    <!-- Med 4: Empagliflozin (엠파글리플로진 / 자디앙) -->
-                    <div onclick="openMedModal('엠파글리플로진 (Empagliflozin 10mg)', 'SGLT2 억제제 (당뇨 및 심장/신장 보호)', '1일 1회 (아침 식사 전후)', '소변으로 과도한 당 배출을 유도하여 혈당과 체중을 줄여줍니다. 복용 중 충분한 수분 섭취(물 자주 마시기)가 중요합니다.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '연노란색 타원형 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="엠파글리플로진">
-                                <span class="absolute top-1.5 right-1.5 bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">당뇨약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">엠파글리플로진</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">10mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🟡 연노랑 타원 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
-
-                    <!-- Med 5: Amlodipine (암로디핀 / 노바스크) -->
-                    <div onclick="openMedModal('암로디핀 (Amlodipine 5mg)', '칼슘채널차단제 (고혈압 치료제)', '1일 1회 (아침 일정 시간)', '혈관 평활근을 이완시켜 혈관 저항을 낮추고 혈압을 안정시킵니다. 자몽주스와 함께 복용하지 마세요.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '흰색 팔각형/타원형 정제')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="암로디핀">
-                                <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">혈압약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">암로디핀</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">5mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">⚪ 흰색 팔각/원형 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
-
-                    <!-- Med 6: Telmisartan (텔미사르탄 / 미카르디스) -->
-                    <div onclick="openMedModal('텔미사르탄 (Telmisartan 40mg)', 'ARB 계열 (혈압 조절 및 심혈관 보호)', '1일 1회 (아침 식후)', '혈관 수축 물질(안지오텐신II)을 차단하여 혈압을 낮추고 표적 장기(심장, 신장)를 보호합니다.', 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80', '흰색/적갈색 이중층 타원형 정제')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="텔미사르탄">
-                                <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">혈압약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">텔미사르탄</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">40mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🔴⚪ 백색/붉은 이중정</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
-
-                    <!-- Med 7: Losartan/HCTZ (로사르탄/히드로클로로티아지드) -->
-                    <div onclick="openMedModal('로사르탄 복합제 (Losartan/HCTZ 50/12.5mg)', 'ARB + 이뇨제 복합 고혈압 치료제', '1일 1회 (아침 매일 같은 시간)', '혈관 확장 작용과 함께 소변을 통한 나트륨 배출을 도와 강압 효과를 높입니다.', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80', '황색 원형 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="로사르탄 복합제">
-                                <span class="absolute top-1.5 right-1.5 bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">혈압약</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">로사르탄 복합제</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">50/12.5mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">🟡 황색 원형 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
-
-                    <!-- Med 8: Atorvastatin (아토르바스타틴 / 리피토) -->
-                    <div onclick="openMedModal('아토르바스타틴 (Atorvastatin 10mg)', 'HMG-CoA 환원효소 억제제 (이상지질혈증 치료제)', '1일 1회 (저녁 또는 취침 전)', '혈중 LDL 콜레스테롤과 중성지방을 낮추고 동맥경화 예방을 위해 당뇨/고혈압 환자에게 동시 처방됩니다.', 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80', '흰색 타원형 필름코팅정')" class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm hover:border-primary cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden mb-2 relative border border-gray-100 flex items-center justify-center p-1">
-                                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover rounded-lg" alt="아토르바스타틴">
-                                <span class="absolute top-1.5 right-1.5 bg-purple-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">고지혈증</span>
-                            </div>
-                            <h3 class="font-bold text-gray-800 text-xs truncate">아토르바스타틴</h3>
-                            <p class="text-[10px] text-gray-400 mt-0.5">10mg · 1일 1회</p>
-                            <p class="text-[9px] text-gray-500 bg-gray-50 px-1.5 py-0.5 rounded mt-1 border border-gray-100">⚪ 흰색 타원 정제</p>
-                        </div>
-                        <div class="mt-2 text-[10px] text-primary font-bold flex items-center justify-between border-t border-gray-100 pt-1.5">
-                            <span>식별 정보 보기</span>
-                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Daily Health Input Form -->
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm space-y-3">
-                    <h3 class="font-bold text-gray-800 text-xs flex items-center gap-1.5">
-                        <i class="fa-solid fa-pen-to-square text-primary"></i> 오늘 건강 수치 기록하기
-                    </h3>
-                    
-                    <div class="space-y-2">
-                        <div>
-                            <label class="text-[10px] text-gray-500 font-medium block mb-1">측정 시점 선택</label>
-                            <select id="input-timing" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs text-gray-700 focus:border-primary focus:outline-none">
-                                <option value="fasting">공복 혈당</option>
-                                <option value="postmeal" selected>식후 2시간 혈당</option>
-                                <option value="random">수시 (기타)</option>
-                            </select>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="text-[10px] text-gray-500 font-medium">혈당 수치 (mg/dL)</label>
-                                <input type="number" id="input-glucose" placeholder="예: 195" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs mt-1 focus:border-primary focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="text-[10px] text-gray-500 font-medium">혈압 (수축기/이완기)</label>
-                                <input type="text" id="input-bp" placeholder="예: 120/80" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs mt-1 focus:border-primary focus:outline-none">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button onclick="saveHealthData()" class="w-full py-2.5 bg-primary hover:bg-primaryDark text-white text-xs font-bold rounded-xl shadow transition">
-                        기록 저장하기
-                    </button>
+                <div class="bg-white p-4 rounded-2xl border border-gray-100 space-y-2">
+                    <h3 class="font-bold text-xs text-gray-800">오늘 건강 수치 입력</h3>
+                    <select id="input-timing" class="w-full bg-gray-50 border p-2 text-xs rounded-lg">
+                        <option value="fasting">공복 혈당</option>
+                        <option value="postmeal" selected>식후 2시간 혈당</option>
+                    </select>
+                    <input type="number" id="input-glucose" placeholder="혈당 수치 (예: 195)" class="w-full bg-gray-50 border p-2 text-xs rounded-lg">
+                    <button onclick="saveHealthData()" class="w-full py-2 bg-primary text-white text-xs font-bold rounded-xl">저장하기</button>
                 </div>
             </section>
 
-            <!-- 5. MY PAGE TAB PAGE -->
+            <!-- 5. MY PAGE -->
             <section id="tab-mypage" class="tab-content hidden space-y-4">
-                <!-- Profile Header -->
-                <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm text-center">
-                    <div class="w-20 h-20 rounded-full bg-primaryLight border-2 border-primary mx-auto flex items-center justify-center text-primary text-3xl font-bold mb-2">
-                        김
-                    </div>
-                    <h2 class="font-bold text-gray-800 text-lg">김가천 님</h2>
-                    <p class="text-xs text-gray-500 mt-0.5">케어밀(Care Meal) 회원</p>
-                    
-                    <div class="flex justify-center space-x-2 mt-3">
-                        <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-emerald-200">2형 당뇨병</span>
-                        <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-blue-200">본태성 고혈압</span>
-                    </div>
-                </div>
-
-                <!-- Settings List -->
-                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm divide-y divide-gray-100 text-xs">
-                    <div class="p-3.5 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
-                        <div class="flex items-center space-x-2.5">
-                            <i class="fa-solid fa-sliders text-gray-400 w-4"></i>
-                            <span class="font-medium text-gray-700">목표 건강 수치 설정</span>
-                        </div>
-                        <span class="text-gray-400 text-[11px]">80~130 mg/dL &gt;</span>
-                    </div>
-                    <div class="p-3.5 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
-                        <div class="flex items-center space-x-2.5">
-                            <i class="fa-solid fa-bell text-gray-400 w-4"></i>
-                            <span class="font-medium text-gray-700">식사 및 약 복용 알림</span>
-                        </div>
-                        <span class="text-primary font-bold text-[11px]">켜짐 &gt;</span>
-                    </div>
-                    <div class="p-3.5 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
-                        <div class="flex items-center space-x-2.5">
-                            <i class="fa-solid fa-file-medical text-gray-400 w-4"></i>
-                            <span class="font-medium text-gray-700">주간 건강 리포트 받기</span>
-                        </div>
-                        <span class="text-gray-400 text-[11px]">매주 월요일 &gt;</span>
-                    </div>
-                    <div class="p-3.5 flex justify-between items-center hover:bg-gray-50 cursor-pointer">
-                        <div class="flex items-center space-x-2.5">
-                            <i class="fa-solid fa-headset text-gray-400 w-4"></i>
-                            <span class="font-medium text-gray-700">고객센터 및 도움말</span>
-                        </div>
-                        <span class="text-gray-400 text-[11px]">&gt;</span>
-                    </div>
-                </div>
-
-                <div class="text-center pt-2">
-                    <button class="text-xs text-gray-400 hover:text-red-500 underline">로그아웃</button>
+                <div class="bg-white p-5 rounded-2xl border text-center">
+                    <h2 class="font-bold text-lg">김가천 님</h2>
+                    <p class="text-xs text-gray-500">케어밀 회원</p>
                 </div>
             </section>
 
         </main>
 
-        <!-- BOTTOM NAVIGATION BAR (Fixed at bottom) -->
-        <nav class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-2 py-2 flex justify-around items-center z-40 sm:rounded-b-3xl">
-            <!-- 1. Home -->
-            <button onclick="switchTab('tab-home')" id="nav-tab-home" class="nav-btn flex flex-col items-center py-1 px-3 text-primary transition">
-                <i class="fa-solid fa-house text-lg"></i>
-                <span class="text-[10px] font-medium mt-1">홈</span>
+        <nav class="absolute bottom-0 left-0 right-0 bg-white border-t px-2 py-2 flex justify-around items-center z-40">
+            <button onclick="switchTab('tab-home')" id="nav-tab-home" class="nav-btn flex flex-col items-center text-primary">
+                <i class="fa-solid fa-house text-lg"></i><span class="text-[10px] mt-1">홈</span>
             </button>
-
-            <!-- 2. Diet Recommendation -->
-            <button onclick="switchTab('tab-recommend')" id="nav-tab-recommend" class="nav-btn flex flex-col items-center py-1 px-3 text-gray-400 hover:text-gray-600 transition">
-                <i class="fa-solid fa-utensils text-lg"></i>
-                <span class="text-[10px] font-medium mt-1">식단 추천</span>
+            <button onclick="switchTab('tab-recommend')" id="nav-tab-recommend" class="nav-btn flex flex-col items-center text-gray-400">
+                <i class="fa-solid fa-utensils text-lg"></i><span class="text-[10px] mt-1">식단</span>
             </button>
-
-            <!-- 3. AI Coaching -->
-            <button onclick="switchTab('tab-coaching')" id="nav-tab-coaching" class="nav-btn flex flex-col items-center py-1 px-3 text-gray-400 hover:text-gray-600 transition">
-                <i class="fa-solid fa-robot text-lg"></i>
-                <span class="text-[10px] font-medium mt-1">AI코칭</span>
+            <button onclick="switchTab('tab-coaching')" id="nav-tab-coaching" class="nav-btn flex flex-col items-center text-gray-400">
+                <i class="fa-solid fa-robot text-lg"></i><span class="text-[10px] mt-1">AI코칭</span>
             </button>
-
-            <!-- 4. Health Records -->
-            <button onclick="switchTab('tab-health')" id="nav-tab-health" class="nav-btn flex flex-col items-center py-1 px-3 text-gray-400 hover:text-gray-600 transition">
-                <i class="fa-solid fa-notes-medical text-lg"></i>
-                <span class="text-[10px] font-medium mt-1">건강기록</span>
+            <button onclick="switchTab('tab-health')" id="nav-tab-health" class="nav-btn flex flex-col items-center text-gray-400">
+                <i class="fa-solid fa-notes-medical text-lg"></i><span class="text-[10px] mt-1">건강기록</span>
             </button>
-
-            <!-- 5. My Page -->
-            <button onclick="switchTab('tab-mypage')" id="nav-tab-mypage" class="nav-btn flex flex-col items-center py-1 px-3 text-gray-400 hover:text-gray-600 transition">
-                <i class="fa-solid fa-user text-lg"></i>
-                <span class="text-[10px] font-medium mt-1">마이페이지</span>
+            <button onclick="switchTab('tab-mypage')" id="nav-tab-mypage" class="nav-btn flex flex-col items-center text-gray-400">
+                <i class="fa-solid fa-user text-lg"></i><span class="text-[10px] mt-1">마이페이지</span>
             </button>
         </nav>
 
-        <!-- MEDICATION DETAIL MODAL DIALOG -->
-        <div id="med-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-            <div class="bg-white rounded-2xl max-w-xs w-full p-5 space-y-4 shadow-xl transform transition-all">
-                <div class="flex justify-between items-start border-b border-gray-100 pb-2">
-                    <div>
-                        <h3 id="modal-med-title" class="font-bold text-gray-800 text-base">약품 이름</h3>
-                        <p id="modal-med-type" class="text-xs text-primary font-medium">분류</p>
-                    </div>
-                    <button onclick="closeMedModal()" class="text-gray-400 hover:text-gray-600 p-1">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
-
-                <div class="w-full h-36 rounded-xl overflow-hidden bg-slate-100 relative border border-gray-200">
-                    <img id="modal-med-img" src="" class="w-full h-full object-cover" alt="약 정보 사진">
-                    <span id="modal-med-shape" class="absolute bottom-2 left-2 bg-black/70 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full font-medium">약 모량 식별</span>
-                </div>
-
-                <div class="space-y-2 text-xs">
-                    <div>
-                        <span class="font-bold text-gray-700 block">복용 방법 및 시간:</span>
-                        <p id="modal-med-usage" class="text-gray-600 bg-emerald-50/50 p-2 rounded-lg border border-emerald-100 mt-0.5">안내</p>
-                    </div>
-                    <div>
-                        <span class="font-bold text-gray-700 block">효능 · 성상 및 복용 주의사항:</span>
-                        <p id="modal-med-desc" class="text-gray-600 leading-relaxed bg-gray-50 p-2 rounded-lg border border-gray-100 mt-0.5">설명</p>
-                    </div>
-                </div>
-
-                <button onclick="closeMedModal()" class="w-full py-2.5 bg-primary text-white font-bold text-xs rounded-xl shadow hover:bg-primaryDark transition">
-                    확인 및 닫기
-                </button>
+        <div id="insulin-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl max-w-xs w-full p-5 space-y-3 text-center border-2 border-red-500">
+                <h3 class="font-bold text-red-600 text-base">🚨 고혈당 경고</h3>
+                <p class="text-xs text-gray-700">입력한 수치: <span id="high-glucose-val" class="font-bold"></span> mg/dL</p>
+                <p class="text-xs text-gray-600 bg-red-50 p-2 rounded-xl">고혈당 수치입니다. 처방받으신 <strong>인슐린 주사 투여</strong>를 확인하세요.</p>
+                <button onclick="closeInsulinModal()" class="w-full py-2 bg-red-600 text-white font-bold text-xs rounded-xl">확인</button>
             </div>
-        </div>
-
-        <!-- HIGH BLOOD SUGAR & INSULIN RECOMMENDATION MODAL -->
-        <div id="insulin-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-            <div class="bg-white rounded-3xl max-w-xs w-full p-5 space-y-4 shadow-2xl text-center transform transition-all border-2 border-red-500 animate-pulse-subtle">
-                <div class="w-14 h-14 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto text-2xl">
-                    <i class="fa-solid fa-syringe"></i>
-                </div>
-                
-                <div>
-                    <span class="bg-red-100 text-red-700 font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase">고혈압 / 고혈당 경고</span>
-                    <h3 class="font-extrabold text-gray-900 text-base mt-1.5">고혈당 수치가 감지되었습니다</h3>
-                    <p class="text-xs text-red-600 font-bold mt-0.5">입력된 혈당: <span id="high-glucose-val">0</span> mg/dL</p>
-                </div>
-
-                <div class="bg-red-50/80 rounded-2xl p-3.5 border border-red-100 text-left text-xs space-y-2">
-                    <div class="flex items-start gap-2">
-                        <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5 shrink-0 text-sm"></i>
-                        <p class="text-gray-800 leading-snug font-medium">
-                            현재 수치는 정상 범위를 초과한 <strong>고혈당 상태</strong>입니다.
-                        </p>
-                    </div>
-                    <p class="text-gray-600 text-[11px] leading-relaxed pl-5">
-                        담당 의사에게 처방받은 <strong>인슐린 주사 투여</strong>를 고려하시고, 필요한 경우 담당 주치의 또는 담당 병원에 즉시 문의하시기 바랍니다.
-                    </p>
-                </div>
-
-                <div class="space-y-2 pt-1">
-                    <button onclick="closeInsulinModal()" class="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow transition">
-                        네, 확인했습니다 (인슐린 조치)
-                    </button>
-                    <button onclick="switchTab('tab-coaching'); closeInsulinModal();" class="w-full py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">
-                        AI 코치에게 응급 대처법 물어보기
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- CUSTOM NOTIFICATION TOAST -->
-        <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 bg-gray-900/90 text-white text-xs px-4 py-2.5 rounded-full shadow-lg z-50 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center gap-2">
-            <i class="fa-solid fa-circle-check text-primary"></i>
-            <span id="toast-msg">저장되었습니다.</span>
         </div>
 
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Chart Instances
         let glucoseChartInstance = null;
-        let bpChartInstance = null;
-
-        // Chart Init Data
-        const chartDays = ['10/27', '10/28', '10/29', '10/30', '10/31', '11/01', '오늘'];
-        const fastingGlucoseData = [95, 102, 98, 110, 94, 99, 98];
-        const postmealGlucoseData = [142, 155, 138, 162, 135, 140, 145];
-
-        const systolicBpData = [122, 128, 124, 120, 126, 122, 124];
-        const diastolicBpData = [80, 84, 82, 78, 83, 81, 82];
-
         window.addEventListener('DOMContentLoaded', () => {
-            initCharts();
-        });
-
-        function initCharts() {
-            // 1. Blood Glucose Chart
             const ctxGlucose = document.getElementById('glucoseChart').getContext('2d');
             glucoseChartInstance = new Chart(ctxGlucose, {
                 type: 'line',
                 data: {
-                    labels: chartDays,
-                    datasets: [
-                        {
-                            label: '공복 혈당',
-                            data: fastingGlucoseData,
-                            borderColor: '#31d000',
-                            backgroundColor: 'rgba(49, 208, 0, 0.1)',
-                            borderWidth: 2,
-                            tension: 0.3,
-                            fill: true,
-                            pointRadius: 3,
-                            pointBackgroundColor: '#31d000'
-                        },
-                        {
-                            label: '식후 2시간 혈당',
-                            data: postmealGlucoseData,
-                            borderColor: '#f59e0b',
-                            backgroundColor: 'rgba(245, 158, 11, 0.05)',
-                            borderWidth: 2,
-                            borderDash: [3, 3],
-                            tension: 0.3,
-                            pointRadius: 3,
-                            pointBackgroundColor: '#f59e0b'
-                        }
-                    ]
+                    labels: ['10/27', '10/28', '10/29', '10/30', '11/01', '오늘'],
+                    datasets: [{ label: '식후 혈당', data: [142, 155, 138, 162, 140, 145], borderColor: '#31d000', borderWidth: 2 }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            min: 70,
-                            max: 200,
-                            ticks: { font: { size: 10 } }
-                        },
-                        x: {
-                            ticks: { font: { size: 10 } }
-                        }
-                    }
-                }
+                options: { responsive: true, maintainAspectRatio: false }
             });
+        });
 
-            // 2. Blood Pressure Chart
-            const ctxBp = document.getElementById('bpChart').getContext('2d');
-            bpChartInstance = new Chart(ctxBp, {
-                type: 'line',
-                data: {
-                    labels: chartDays,
-                    datasets: [
-                        {
-                            label: '수축기 혈압',
-                            data: systolicBpData,
-                            borderColor: '#2563eb',
-                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                            borderWidth: 2,
-                            tension: 0.3,
-                            pointRadius: 3,
-                            pointBackgroundColor: '#2563eb'
-                        },
-                        {
-                            label: '이완기 혈압',
-                            data: diastolicBpData,
-                            borderColor: '#38bdf8',
-                            backgroundColor: 'transparent',
-                            borderWidth: 2,
-                            tension: 0.3,
-                            pointRadius: 3,
-                            pointBackgroundColor: '#38bdf8'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            min: 60,
-                            max: 160,
-                            ticks: { font: { size: 10 } }
-                        },
-                        x: {
-                            ticks: { font: { size: 10 } }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Tab Navigation Switcher Logic
         function switchTab(tabId) {
-            // Hide all contents
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            
-            // Show target content
-            const target = document.getElementById(tabId);
-            if(target) target.classList.remove('hidden');
-
-            // Reset navigation button styles
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('text-primary');
-                btn.classList.add('text-gray-400');
-            });
-
-            // Highlight selected tab button
-            const activeNavBtn = document.getElementById('nav-' + tabId);
-            if(activeNavBtn) {
-                activeNavBtn.classList.remove('text-gray-400');
-                activeNavBtn.classList.add('text-primary');
-            }
-
-            // Scroll content to top
-            document.getElementById('content-container').scrollTop = 0;
-
-            // Resize charts when switching to health tab
-            if (tabId === 'tab-health' && glucoseChartInstance && bpChartInstance) {
-                setTimeout(() => {
-                    glucoseChartInstance.resize();
-                    bpChartInstance.resize();
-                }, 50);
-            }
-        }
-
-        // Medication Modal Functionality with Pill Shape Tag
-        function openMedModal(title, type, usage, desc, img, shape) {
-            document.getElementById('modal-med-title').innerText = title;
-            document.getElementById('modal-med-type').innerText = type;
-            document.getElementById('modal-med-usage').innerText = usage;
-            document.getElementById('modal-med-desc').innerText = desc;
-            document.getElementById('modal-med-img').src = img;
-            document.getElementById('modal-med-shape').innerText = shape || '낱알 식별 표기';
-            
-            document.getElementById('med-modal').classList.remove('hidden');
-        }
-
-        function closeMedModal() {
-            document.getElementById('med-modal').classList.add('hidden');
+            document.getElementById(tabId).classList.remove('hidden');
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.replace('text-primary', 'text-gray-400'));
+            document.getElementById('nav-' + tabId).classList.replace('text-gray-400', 'text-primary');
         }
 
         function closeInsulinModal() {
             document.getElementById('insulin-modal').classList.add('hidden');
         }
 
-        // AI Coaching Chat Messaging Functions
-        function sendMessage() {
-            const input = document.getElementById('user-input');
-            const message = input.value.trim();
-            if (!message) return;
-
-            appendMessage('user', message);
-            input.value = '';
-
-            // AI Reply Simulation
-            setTimeout(() => {
-                let reply = "김가천 님의 문의에 맞춰 혈당 상태를 고려한 가이드를 제공해 드릴게요. 추가 문의가 있으시면 편하게 말씀해 주세요!";
-                if (message.includes('저녁')) {
-                    reply = "저녁으로는 혈당 변동을 최소화하는 '곤약 두부 두루치기'나 '보리밥과 연어구이'를 추천합니다.";
-                } else if (message.includes('160')) {
-                    reply = "식후 2시간 혈당 160mg/dL은 목표 수치(140 미만)보다 다소 높습니다. 가벼운 15분 산책을 권장합니다.";
-                } else if (message.includes('나트륨')) {
-                    reply = "외식 시 국물 요리의 국물은 남기시고, 드레싱이나 양념은 따로 받아 찍어 드시는 것이 좋습니다.";
-                }
-                appendMessage('ai', reply);
-            }, 600);
-        }
-
-        function sendQuickMessage(text) {
-            document.getElementById('user-input').value = text;
-            sendMessage();
-        }
-
-        function appendMessage(sender, text) {
-            const chatMessages = document.getElementById('chat-messages');
-            const msgDiv = document.createElement('div');
-            
-            if (sender === 'user') {
-                msgDiv.className = 'flex justify-end';
-                msgDiv.innerHTML = `<div class="bg-primary text-white p-3 rounded-2xl rounded-tr-none max-w-[80%] leading-relaxed">${text}</div>`;
-            } else {
-                msgDiv.className = 'flex items-start space-x-2';
-                msgDiv.innerHTML = `
-                    <div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs shrink-0">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="bg-gray-100 text-gray-800 p-3 rounded-2xl rounded-tl-none max-w-[80%] leading-relaxed">${text}</div>
-                `;
-            }
-            
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Toast Helper
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-msg');
-            toastMsg.innerText = message;
-            toast.classList.remove('opacity-0');
-            toast.classList.add('opacity-100');
-            setTimeout(() => {
-                toast.classList.remove('opacity-100');
-                toast.classList.add('opacity-0');
-            }, 2500);
-        }
-
-        // Save Health Log Function & High Glucose Insulin Alert Logic
         function saveHealthData() {
-            const glucoseInput = document.getElementById('input-glucose').value;
-            const bp = document.getElementById('input-bp').value;
+            const val = parseInt(document.getElementById('input-glucose').value, 10);
             const timing = document.getElementById('input-timing').value;
+            if (!val) return alert('혈당을 입력하세요!');
 
-            if(!glucoseInput && !bp) {
-                showToast('수치를 입력해주세요!');
-                return;
-            }
-
-            const glucose = parseInt(glucoseInput, 10);
-
-            // Update Chart Data Dynamic Reflect
-            if (glucose) {
-                if (timing === 'fasting') {
-                    fastingGlucoseData[fastingGlucoseData.length - 1] = glucose;
-                } else {
-                    postmealGlucoseData[postmealGlucoseData.length - 1] = glucose;
-                }
-                if (glucoseChartInstance) glucoseChartInstance.update();
-            }
-
-            if (bp && bp.includes('/')) {
-                const parts = bp.split('/');
-                const sys = parseInt(parts[0], 10);
-                const dia = parseInt(parts[1], 10);
-                if (sys) systolicBpData[systolicBpData.length - 1] = sys;
-                if (dia) diastolicBpData[diastolicBpData.length - 1] = dia;
-                if (bpChartInstance) bpChartInstance.update();
-            }
-
-            // High Blood Sugar Alert Logic Thresholds
-            // Fasting: >= 126 mg/dL OR Postmeal/Random >= 180 mg/dL
-            const isHighFasting = (timing === 'fasting' && glucose >= 126);
-            const isHighGeneral = (timing !== 'fasting' && glucose >= 180);
-
-            if (glucose && (isHighFasting || isHighGeneral)) {
-                document.getElementById('high-glucose-val').innerText = glucose;
+            if ((timing === 'fasting' && val >= 126) || (timing !== 'fasting' && val >= 180)) {
+                document.getElementById('high-glucose-val').innerText = val;
                 document.getElementById('insulin-modal').classList.remove('hidden');
             } else {
-                showToast('김가천 님의 건강 수치가 저장되고 그래프에 반영되었습니다!');
+                alert('저장되었습니다!');
             }
-
-            document.getElementById('input-glucose').value = '';
-            document.getElementById('input-bp').value = '';
         }
     </script>
 </body>
