@@ -98,48 +98,202 @@
                     </div>
                 </div>
 
-                <!-- Main Lunch Recommendation Card -->
-                <div class="bg-white rounded-2xl p-4 border border-gray-100 app-shadow space-y-3">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-primary bg-primaryLight px-2.5 py-1 rounded-md flex items-center gap-1">
-                            <i class="fa-solid fa-utensils text-xs"></i> 오늘의 추천 점심
-                        </span>
-                        <span class="text-xs text-gray-400">당뇨 전용 저GI 식단</span>
-                    </div>
+               
+<!-- Main Meal Recommendation Card -->
+<div class="bg-white rounded-2xl p-4 border border-gray-100 app-shadow space-y-3">
 
-                    <div class="flex items-center space-x-4">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80" alt="현미밥 포케" class="w-20 h-20 rounded-xl object-cover shadow-sm border border-gray-100" onerror="this.src='https://placehold.co/150x150/31d000/FFFFFF?text=포케'">
-                        <div class="flex-1">
-                            <h2 class="text-lg font-bold text-gray-800 leading-snug">오늘 점심은<br><span class="text-primaryDark">현미밥 포케</span> 어떤가요?</h2>
-                            <p class="text-xs text-gray-500 mt-1">풍부한 식이섬유와 연어 아보카도로 혈당 급상승을 방지해요.</p>
-                        </div>
-                    </div>
+    <div class="flex justify-between items-center">
+        <span id="meal-badge"
+              class="text-xs font-bold text-primary bg-primaryLight px-2.5 py-1 rounded-md flex items-center gap-1">
+            <i class="fa-solid fa-utensils text-xs"></i>
+            오늘의 추천 식사
+        </span>
+        <span class="text-xs text-gray-400">
+            당뇨·고혈압 맞춤 식단
+        </span>
+    </div>
 
-                    <!-- Nutrition Pills -->
-                    <div class="grid grid-cols-4 gap-2 pt-2 border-t border-gray-100 text-center text-xs">
-                        <div class="bg-gray-50 p-2 rounded-lg">
-                            <div class="text-gray-400 text-[10px]">열량</div>
-                            <div class="font-bold text-gray-700">480 kcal</div>
-                        </div>
-                        <div class="bg-emerald-50/60 p-2 rounded-lg">
-                            <div class="text-emerald-600 text-[10px]">탄수화물</div>
-                            <div class="font-bold text-emerald-800">52g (저GI)</div>
-                        </div>
-                        <div class="bg-gray-50 p-2 rounded-lg">
-                            <div class="text-gray-400 text-[10px]">단백질</div>
-                            <div class="font-bold text-gray-700">28g</div>
-                        </div>
-                        <div class="bg-gray-50 p-2 rounded-lg">
-                            <div class="text-gray-400 text-[10px]">당류</div>
-                            <div class="font-bold text-emerald-600">3g 이하</div>
-                        </div>
-                    </div>
+    <div class="flex items-center space-x-4">
+        <img id="meal-image"
+             src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80"
+             alt="아침 식단"
+             class="w-20 h-20 rounded-xl object-cover shadow-sm border border-gray-100">
 
-                    <button onclick="switchTab('tab-recommend')" class="w-full mt-2 py-2.5 bg-primary hover:bg-primaryDark text-white font-medium text-xs rounded-xl shadow transition flex items-center justify-center gap-1.5">
-                        <span>상황별 식단 더 찾아보기</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </button>
-                </div>
+        <div class="flex-1">
+            <h2 class="text-lg font-bold text-gray-800 leading-snug">
+                <span id="meal-greeting">오늘 아침은</span><br>
+                <span id="meal-name" class="text-primaryDark">
+                    통밀 토스트와 삶은 달걀
+                </span>
+                <span id="meal-question">어떤가요?</span>
+            </h2>
+            <p id="meal-description" class="text-xs text-gray-500 mt-1">
+                식이섬유가 풍부한 통밀빵과 단백질을 함께 섭취해 균형 잡힌 아침을 시작해 보세요.
+            </p>
+        </div>
+    </div>
+
+    <!-- Nutrition Pills -->
+    <div class="grid grid-cols-4 gap-2 pt-2 border-t border-gray-100 text-center text-xs">
+
+        <div class="bg-gray-50 p-2 rounded-lg">
+            <div class="text-gray-400 text-[10px]">열량</div>
+            <div id="meal-calories" class="font-bold text-gray-700">350 kcal</div>
+        </div>
+
+        <div class="bg-emerald-50/60 p-2 rounded-lg">
+            <div class="text-emerald-600 text-[10px]">탄수화물</div>
+            <div id="meal-carbs" class="font-bold text-emerald-800">35g</div>
+        </div>
+
+        <div class="bg-gray-50 p-2 rounded-lg">
+            <div class="text-gray-400 text-[10px]">단백질</div>
+            <div id="meal-protein" class="font-bold text-gray-700">22g</div>
+        </div>
+
+        <div class="bg-gray-50 p-2 rounded-lg">
+            <div class="text-gray-400 text-[10px]">당류</div>
+            <div id="meal-sugar" class="font-bold text-emerald-600">8g</div>
+        </div>
+
+    </div>
+
+    <button onclick="switchTab('tab-recommend')"
+            class="w-full mt-2 py-2.5 bg-primary hover:bg-primaryDark text-white font-medium text-xs rounded-xl shadow transition flex items-center justify-center gap-1.5">
+        <span>상황별 식단 더 찾아보기</span>
+        <i class="fa-solid fa-arrow-right text-xs"></i>
+    </button>
+
+</div>
+
+
+<script>
+function updateMealRecommendation() {
+
+    const hour = new Date().getHours();
+
+    const mealData = {
+
+        breakfast: {
+            badge: "오늘의 추천 아침",
+            greeting: "오늘 아침은",
+            name: "통밀 토스트와 삶은 달걀",
+            description: "통밀빵의 식이섬유와 달걀의 단백질로 균형 잡힌 아침을 시작해 보세요. 무가당 그릭요거트를 곁들여도 좋습니다.",
+            image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80",
+            calories: "350 kcal",
+            carbs: "35g",
+            protein: "22g",
+            sugar: "8g",
+            alt: "통밀 토스트와 삶은 달걀"
+        },
+
+        lunch: {
+            badge: "오늘의 추천 점심",
+            greeting: "오늘 점심은",
+            name: "현미밥 연어 채소 포케",
+            description: "현미밥과 연어, 다양한 채소를 함께 섭취해 보세요. 소스는 적게 사용하고 나트륨 섭취를 줄이는 것이 좋습니다.",
+            image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80",
+            calories: "480 kcal",
+            carbs: "52g",
+            protein: "28g",
+            sugar: "5g",
+            alt: "현미밥 연어 채소 포케"
+        },
+
+        dinner: {
+            badge: "오늘의 추천 저녁",
+            greeting: "오늘 저녁은",
+            name: "보리밥과 저염 고등어구이",
+            description: "식이섬유가 풍부한 보리밥과 단백질이 풍부한 생선, 싱싱한 채소를 곁들여 보세요. 소금과 양념은 최소화해 주세요.",
+            image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=300&q=80",
+            calories: "450 kcal",
+            carbs: "48g",
+            protein: "30g",
+            sugar: "6g",
+            alt: "생선구이와 밥, 채소 반찬"
+        }
+    };
+
+    let selectedMeal;
+
+    if (hour >= 6 && hour <= 10) {
+        selectedMeal = mealData.breakfast;
+    } 
+    else if (hour >= 11 && hour <= 15) {
+        selectedMeal = mealData.lunch;
+    } 
+    else if (hour >= 16 && hour <= 22) {
+        selectedMeal = mealData.dinner;
+    } 
+    else {
+        document.getElementById("meal-badge").innerHTML =
+            '<i class="fa-solid fa-moon text-xs"></i> 식단 추천 안내';
+
+        document.getElementById("meal-greeting").innerText =
+            "오늘의 식사 추천은";
+
+        document.getElementById("meal-name").innerText =
+            "오전 6시부터 제공됩니다";
+
+        document.getElementById("meal-question").innerText = "";
+
+        document.getElementById("meal-description").innerText =
+            "아침, 점심, 저녁 시간에 맞춰 건강한 맞춤 식단을 추천해 드립니다.";
+
+        document.getElementById("meal-image").src =
+            "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=300&q=80";
+
+        document.getElementById("meal-image").alt = "건강한 식단";
+
+        document.getElementById("meal-calories").innerText = "-";
+        document.getElementById("meal-carbs").innerText = "-";
+        document.getElementById("meal-protein").innerText = "-";
+        document.getElementById("meal-sugar").innerText = "-";
+
+        return;
+    }
+
+    document.getElementById("meal-badge").innerHTML =
+        '<i class="fa-solid fa-utensils text-xs"></i> ' + selectedMeal.badge;
+
+    document.getElementById("meal-greeting").innerText =
+        selectedMeal.greeting;
+
+    document.getElementById("meal-name").innerText =
+        selectedMeal.name;
+
+    document.getElementById("meal-question").innerText =
+        "어떤가요?";
+
+    document.getElementById("meal-description").innerText =
+        selectedMeal.description;
+
+    document.getElementById("meal-image").src =
+        selectedMeal.image;
+
+    document.getElementById("meal-image").alt =
+        selectedMeal.alt;
+
+    document.getElementById("meal-calories").innerText =
+        selectedMeal.calories;
+
+    document.getElementById("meal-carbs").innerText =
+        selectedMeal.carbs;
+
+    document.getElementById("meal-protein").innerText =
+        selectedMeal.protein;
+
+    document.getElementById("meal-sugar").innerText =
+        selectedMeal.sugar;
+}
+
+// 페이지 로딩 시 현재 시간에 맞는 식단 표시
+updateMealRecommendation();
+
+// 페이지를 열어둔 상태에서도 시간 변경 반영
+setInterval(updateMealRecommendation, 60000);
+
+</script>
 
                 <!-- Today Health Summary Widgets -->
                 <div>
